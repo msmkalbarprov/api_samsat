@@ -1,1 +1,3 @@
-# simakdaservice
+SIMAKDA API 
+- samsat
+- blud
