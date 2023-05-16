@@ -32,8 +32,8 @@ Class Mapi extends CI_Model
 		
 		if($hasil){
 			//tetap
-			$hasil = $this->db->query("delete from $tabel_tetap where tgl_tetap='$tgl'");	
-			$hasil = $this->db->query("delete from $tabel_tetap_api where tgl_tetap='$tgl'");
+			$hasil = $this->db->query("delete from $tabel_tetap where tgl_tetap='$tgl' and user_name='samsat'");	
+			$hasil = $this->db->query("delete from $tabel_tetap_api where tgl_tetap='$tgl' and user_name='samsat'");
 			
 			$hasil = $this->db->query("
 			INSERT into $tabel_tetap_api
@@ -55,8 +55,8 @@ Class Mapi extends CI_Model
 					)as gabung group by no_tetap,no_terima,tgl_samsat,kd_skpd,no_rek,no_rek2,nm_rek6,jenis,kd_uptbyr,nm_pengirim,kd_rek_lo,keterangan,kd_sub_kegiatan,kanal order by kd_uptbyr,no_rek");
 		
 			//terima
-			$hasil = $this->db->query("delete from $tabel_terima where tgl_tetap='$tgl' and kunci=0");
-			$hasil = $this->db->query("delete from $tabel_terima_api where tgl_tetap='$tgl'");
+			$hasil = $this->db->query("delete from $tabel_terima where tgl_tetap='$tgl' and kunci=0 and user_name='samsat'");
+			$hasil = $this->db->query("delete from $tabel_terima_api where tgl_tetap='$tgl' and user_name='samsat'");
 			
 			$hasil = $this->db->query("
 			INSERT into $tabel_terima_api
@@ -102,8 +102,8 @@ Class Mapi extends CI_Model
 		
 		if($hasil){
 			//tetap
-			$hasil = $this->db->query("delete from $tabel_tetap where tgl_tetap='$tgl' and substring(substring(no_tetap,22,len(no_tetap)-21),2,len(substring(no_tetap,22,len(no_tetap)-21))-38) in $kodegerai ");	
-			$hasil = $this->db->query("delete from $tabel_tetap_api where tgl_tetap='$tgl' and and substring(substring(no_tetap,22,len(no_tetap)-21),2,len(substring(no_tetap,22,len(no_tetap)-21))-38) in $kodegerai ");
+			$hasil = $this->db->query("delete from $tabel_tetap where tgl_tetap='$tgl' and substring(substring(no_tetap,22,len(no_tetap)-21),2,len(substring(no_tetap,22,len(no_tetap)-21))-38) in $kodegerai and user_name='samsat'");	
+			$hasil = $this->db->query("delete from $tabel_tetap_api where tgl_tetap='$tgl' and and substring(substring(no_tetap,22,len(no_tetap)-21),2,len(substring(no_tetap,22,len(no_tetap)-21))-38) in $kodegerai and user_name='samsat'");
 			
 			$hasil = $this->db->query("
 			INSERT into $tabel_tetap_api
@@ -125,8 +125,8 @@ Class Mapi extends CI_Model
 					)as gabung group by no_tetap,no_terima,tgl_samsat,kd_skpd,no_rek,no_rek2,nm_rek6,jenis,kd_uptbyr,nm_pengirim,kd_rek_lo,keterangan,kd_sub_kegiatan,kanal order by kd_uptbyr,no_rek");
 		
 			//terima
-			$hasil = $this->db->query("delete from $tabel_terima where tgl_tetap='$tgl' and kunci=0 and sumber in $kodegerai ");
-			$hasil = $this->db->query("delete from $tabel_terima_api where tgl_tetap='$tgl' and sumber in $kodegerai ");
+			$hasil = $this->db->query("delete from $tabel_terima where tgl_tetap='$tgl' and kunci=0 and and substring(substring(no_tetap,22,len(no_tetap)-21),2,len(substring(no_tetap,22,len(no_tetap)-21))-38) in $kodegerai and user_name='samsat'");
+			$hasil = $this->db->query("delete from $tabel_terima_api where tgl_tetap='$tgl' and and substring(substring(no_tetap,22,len(no_tetap)-21),2,len(substring(no_tetap,22,len(no_tetap)-21))-38) in $kodegerai and user_name='samsat'");
 			
 			$hasil = $this->db->query("
 			INSERT into $tabel_terima_api
@@ -645,6 +645,49 @@ Class Mapi extends CI_Model
 		}
 	}
 
+	// permintaan biro adpem
+	function get_datadak($tanggal){
+		$data = array();
+		$hasil = $this->db->query("SELECT 
+		kd_skpd as Skpd,
+		nm_skpd as Nmskpd,
+		kd_program as Program,
+		nm_program as Nmprogram,
+		kd_kegiatan as Giat,
+		nm_kegiatan as Nmgiat,
+		kd_sub_kegiatan as Subgiat,
+		nm_sub_kegiatan as Nmsubgiat,
+		sumber,
+		CASE 
+			WHEN left(sumber,7)='2210103' THEN 'DAK FISIK'
+			ELSE 'DAK NON FISIK'
+		END as sumber_dana,
+		rek1 as Rek1,
+		nmrek1 as Nmrek1,
+		rek2 as Rek2,
+		nmrek2 as nmrek2,
+		rek3 as rek3,
+		nmrek3 as nmrek3,
+		rek4 as rek4,
+		nmrek4 as nmrek4,
+		rek5 as rek5,
+		nmrek5 as nmrek5,
+		rek6 as rek6,
+		nm_rek6 as nm_rek6,
+		isnull(murni,0) as Nilai,
+		isnull(p1,0) as Nilaisempurna1,
+		isnull(p2,0) as Nilaisempurna2,
+		isnull(u1,0) as Nilai_ubah,
+		isnull((select sum(nilai) from trdtransout a 
+		INNER JOIN trhtransout b on a.no_bukti=b.no_bukti and a.kd_skpd=b.kd_skpd where z.kd_skpd=a.kd_skpd and z.rek6=a.kd_rek6 and z.kd_sub_kegiatan=a.kd_sub_kegiatan and z.sumber=a.sumber and b.tgl_bukti<=?),0) as Realisasi from data_biro_adpem as z",array($tanggal));
+		
+		if($hasil->num_rows() > 0){
+			return $hasil->result();
+			//return $hasil->row();
+		}else{
+			return $data;
+		}
+	}
 	
     
 }

@@ -51,6 +51,16 @@ class blud2simakda extends CI_Controller {
         // $query1->free_result();   
     }
 
+	function get_nama($kode,$hasil,$tabel,$field)
+		{
+			$this->db->select($hasil);
+			$this->db->where($field, $kode);
+			$q = $this->db->get($tabel);
+			$data  = $q->result_array();
+			$baris = $q->num_rows();
+			return $data[0][$hasil];
+		}
+
 	function sp3b_blud(){
 
 		
@@ -199,7 +209,7 @@ $this->db->query("INSERT into trdkasin_blud (kd_skpd,no_sts,kd_rek5,rupiah,kd_ke
 	            $no_lpj= $value->no_lpj;
 	            $total= $value->total;
 	            $skpd= $value->skpd;
-				$nama_skpd = $this->tukd_model->get_nama($kd_skpd,'nm_skpd','ms_skpd','kd_skpd');
+				$nama_skpd = $this->get_nama($kd_skpd,'nm_skpd','ms_skpd','kd_skpd');
 	            $bulan= $value->bulan;
 	            $tgl_update= $value->tgl_update;
 	            $username= $value->username;

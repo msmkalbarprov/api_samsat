@@ -826,6 +826,27 @@ order by a.kd_skpd,a.tgl_kas,a.no_kas
 			}
 		}
 	}
+
+
+	// PERMINTAAN BIRO ADMINISTRASI PEMBANGUNAN
+	function datadak_get(){
+		ini_set('max_execution_time', -1); 
+		ini_set('memory_limit','2048M');
+		$tanggal = $this->get('tanggal');
+
+        if($tanggal==''){
+			$this->response(array('error' => 'Tanggal Belum dipilih'), 400); 
+		}else {
+			
+			$query = $this->mapi->get_datadak($tanggal);
+			if($query) {
+				$this->response(array('data' => $query), 200);                
+			} else {
+				$this->response(array('error' => 'Data tidak ditemukan'), 404);
+			}
+		}
+	}
+
 	
     
 }
