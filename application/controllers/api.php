@@ -26,6 +26,7 @@ class Api extends REST_Controller
 		parent::__construct();
 		$this->__getMyMethods();
 		$this->load->model('mapi');
+		$this->load->model('sp2dModel');
 	}
 
 	function setor_get(){
@@ -845,6 +846,36 @@ order by a.kd_skpd,a.tgl_kas,a.no_kas
 				$this->response(array('error' => 'Data tidak ditemukan'), 404);
 			}
 		}
+	}
+
+
+	function sp2dList_get(){
+		ini_set('max_execution_time', -1); 
+		ini_set('memory_limit',-1);
+			$kueri 			= $this->get('search');
+			$query          = $this->sp2dModel->getsp2dQuery($kueri);
+            $lastupdate    = $this->sp2dModel->last_update();
+            // $Filteredrecord = $this->sp2dModel->count_filtered($kueri);
+			if($query) {
+				$this->response(array(
+					'status' => true,
+					'message' => 'SUKSES',
+					'data' => $query,
+                    // "recordsTotal" => $Filteredrecord,
+				    // "recordsFiltered" =>$Filteredrecord ,
+					"lastupdate" => $lastupdate,
+					), 200);                
+			} else {
+				
+				$this->response(array(
+					'status' => false,
+					'message' => 'Data tidak ditemukan',
+					'data' => '',
+                    "recordsTotal" => 0,
+				    "recordsFiltered" => 0,
+					), 404);  
+			}
+		
 	}
 
 	

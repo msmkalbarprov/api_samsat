@@ -658,10 +658,11 @@ Class Mapi extends CI_Model
 		kd_sub_kegiatan as Subgiat,
 		nm_sub_kegiatan as Nmsubgiat,
 		sumber,
-		CASE 
-			WHEN left(sumber,7)='2210103' THEN 'DAK FISIK'
-			ELSE 'DAK NON FISIK'
-		END as sumber_dana,
+		-- CASE 
+		-- 	WHEN left(sumber,7)='2210103' THEN 'DAK FISIK'
+		-- 	ELSE 'DAK NON FISIK'
+		-- END as sumber_dana,
+		(select nm_sumber_dana1 from sumber_dana where kd_sumber_dana1=sumber)as sumber_dana,
 		rek1 as Rek1,
 		nmrek1 as Nmrek1,
 		rek2 as Rek2,
