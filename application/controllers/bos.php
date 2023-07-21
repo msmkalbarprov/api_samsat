@@ -300,7 +300,7 @@ class Bos extends REST_Controller
 			$this->response(array(
 				'status' => false,
 				'message' => 'Unauthorized access token',
-				'data' => ''.$headers['Authorization'],
+				'data' => ''.$headers[0].$headers[1].$headers[2],
 				), 404);  
 		}
 	}
