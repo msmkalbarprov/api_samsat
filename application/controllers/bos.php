@@ -69,12 +69,12 @@ class Bos extends REST_Controller
 		$url = "https://simakda.kalbarprov.go.id/simakdaservice_2023/index.php/bos/test/format/json";
 
         $ch = curl_init();
-        curl_setopt_array($ch, [
+        curl_setopt_array($ch, array(
             CURLOPT_URL => $url,
             CURLOPT_SSL_VERIFYHOST => false,
             CURLOPT_SSL_VERIFYPEER => false,
             CURLOPT_RETURNTRANSFER => true
-        ]);
+        ));
         $response = curl_exec($ch);
         $content = json_decode($response);
         curl_close($ch);
