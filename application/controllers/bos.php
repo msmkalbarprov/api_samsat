@@ -66,7 +66,7 @@ class Bos extends REST_Controller
 		
 		$tanggal =  $tg3.'-'.$tg2.'-'.$tg1;
 		
-		$url = "http://36.66.239.162:8585/simakda?username=simakda&password=5a24e942bcffd&tgl=".$tgl1;
+		$url = "localhost:8080/api_samsat/index.php/bos/test/format/json/";
 		
 		$data = file_get_contents($url);
 
@@ -74,115 +74,122 @@ class Bos extends REST_Controller
 		// return;
 		
 		$content = json_decode($data, TRUE);
-		
+       
+	    return $content;
 		
 		$row_num = count($content);
         $dsql='';
         $ii = 0;
 
         if($row_num>0){
-            foreach($content as $resulte){
+            // foreach($content as $resulte){
 
-            	$cek_upt = $content[$ii]['kd_upt'];
-		        $skpdsamsat=$this->db->query("SELECT isnull(kd_skpd,0) kd_skpd from map_samsat where kd_samsat='$cek_upt'")->row();
-        		$skpd_samsat=$skpdsamsat->kd_skpd;
+            // 	$cek_upt = $content[$ii]['kd_upt'];
+		    //     $skpdsamsat=$this->db->query("SELECT isnull(kd_skpd,0) kd_skpd from map_samsat where kd_samsat='$cek_upt'")->row();
+        	// 	$skpd_samsat=$skpdsamsat->kd_skpd;
         		
 
-            	if($resulte['no_rek']==4110601){
-                   $content[$ii]['no_rek']=4110201;
-                } else if ($resulte['no_rek']==4110602){
-                   $content[$ii]['no_rek']=4110202;
-                } else if ($resulte['no_rek']==4110603){
-                   $content[$ii]['no_rek']=4110203;
-                } else if ($resulte['no_rek']==4110604){
-                   $content[$ii]['no_rek']=4110204;
-                } else if ($resulte['no_rek']==4110605){
-                   $content[$ii]['no_rek']=4110205;
-                } else if ($resulte['no_rek']==4110606){
-                   $content[$ii]['no_rek']=4110206;
-                } else if ($resulte['no_rek']==4110607){
-                   $content[$ii]['no_rek']=4110207;
-                } else if ($resulte['no_rek']==4110608){
-                   $content[$ii]['no_rek']=4110208;
-                } else if ($resulte['no_rek']==4110609){
-                   $content[$ii]['no_rek']=4110209;
-                } else if ($resulte['no_rek']==4110610){
-                   $content[$ii]['no_rek']=4110210;
-                } else if ($resulte['no_rek']==4110611){
-                   $content[$ii]['no_rek']=4110211;
-                } else if ($resulte['no_rek']==4110612){
-                   $content[$ii]['no_rek']=4110212;
-                } else if ($resulte['no_rek']==4110613){
-                   $content[$ii]['no_rek']=4110213;
-                } else {
-                   $resulte['no_rek'];
-                } 
+            // 	if($resulte['no_rek']==4110601){
+            //        $content[$ii]['no_rek']=4110201;
+            //     } else if ($resulte['no_rek']==4110602){
+            //        $content[$ii]['no_rek']=4110202;
+            //     } else if ($resulte['no_rek']==4110603){
+            //        $content[$ii]['no_rek']=4110203;
+            //     } else if ($resulte['no_rek']==4110604){
+            //        $content[$ii]['no_rek']=4110204;
+            //     } else if ($resulte['no_rek']==4110605){
+            //        $content[$ii]['no_rek']=4110205;
+            //     } else if ($resulte['no_rek']==4110606){
+            //        $content[$ii]['no_rek']=4110206;
+            //     } else if ($resulte['no_rek']==4110607){
+            //        $content[$ii]['no_rek']=4110207;
+            //     } else if ($resulte['no_rek']==4110608){
+            //        $content[$ii]['no_rek']=4110208;
+            //     } else if ($resulte['no_rek']==4110609){
+            //        $content[$ii]['no_rek']=4110209;
+            //     } else if ($resulte['no_rek']==4110610){
+            //        $content[$ii]['no_rek']=4110210;
+            //     } else if ($resulte['no_rek']==4110611){
+            //        $content[$ii]['no_rek']=4110211;
+            //     } else if ($resulte['no_rek']==4110612){
+            //        $content[$ii]['no_rek']=4110212;
+            //     } else if ($resulte['no_rek']==4110613){
+            //        $content[$ii]['no_rek']=4110213;
+            //     } else {
+            //        $resulte['no_rek'];
+            //     } 
 
-                //cek
-					if($content[$ii]['kd_dati2']==''){
-						$this->response(array('status' => 'kd_dati2 ada yang kosong', 502));
-					}
+            //     //cek
+			// 		if($content[$ii]['kd_dati2']==''){
+			// 			$this->response(array('status' => 'kd_dati2 ada yang kosong', 502));
+			// 		}
 					
-					if($content[$ii]['no_rek']==''){
-						$this->response(array('status' => 'no_rek ada yang kosong', 502));
-					}
+			// 		if($content[$ii]['no_rek']==''){
+			// 			$this->response(array('status' => 'no_rek ada yang kosong', 502));
+			// 		}
 					
-					if($content[$ii]['kode']==''){
-						$this->response(array('status' => 'kode ada yang kosong', 502));
-					}
+			// 		if($content[$ii]['kode']==''){
+			// 			$this->response(array('status' => 'kode ada yang kosong', 502));
+			// 		}
 					
-					if($content[$ii]['jml_pener']==''){
-						$this->response(array('status' => 'jml_pener ada yang kosong', 502));
-					}
+			// 		if($content[$ii]['jml_pener']==''){
+			// 			$this->response(array('status' => 'jml_pener ada yang kosong', 502));
+			// 		}
 					
-					if($content[$ii]['kd_upt']==''){
-						$this->response(array('status' => 'kd_upt ada yang kosong', 502));
-					}
+			// 		if($content[$ii]['kd_upt']==''){
+			// 			$this->response(array('status' => 'kd_upt ada yang kosong', 502));
+			// 		}
 					
-					if($content[$ii]['kd_uptbyr']==''){
-						$this->response(array('status' => 'kd_uptbyr ada yang kosong', 502));
-					}
+			// 		if($content[$ii]['kd_uptbyr']==''){
+			// 			$this->response(array('status' => 'kd_uptbyr ada yang kosong', 502));
+			// 		}
 					
-					if($content[$ii]['kd_lokasi']==''){
-						$this->response(array('status' => 'kd_lokasi ada yang kosong', 502));
-					}
+			// 		if($content[$ii]['kd_lokasi']==''){
+			// 			$this->response(array('status' => 'kd_lokasi ada yang kosong', 502));
+			// 		}
 
-				if($ii==0){
+			// 	if($ii==0){
 					
-					//insert
-                    $dsql = $dsql."('".$tanggal."','".$content[$ii]['no_rek']."','".$content[$ii]['kode']."',".$content[$ii]['jml_pener'].",'".$content[$ii]['kd_uptbyr']."','".$skpd_samsat."','".$now."','".$content[$ii]['kanal']."')";    
-                }else{
+			// 		//insert
+            //         $dsql = $dsql."('".$tanggal."','".$content[$ii]['no_rek']."','".$content[$ii]['kode']."',".$content[$ii]['jml_pener'].",'".$content[$ii]['kd_uptbyr']."','".$skpd_samsat."','".$now."','".$content[$ii]['kanal']."')";    
+            //     }else{
 					
-					//insert
-                    $dsql = $dsql.",('".$tanggal."','".$content[$ii]['no_rek']."','".$content[$ii]['kode']."',".$content[$ii]['jml_pener'].",'".$content[$ii]['kd_uptbyr']."','".$skpd_samsat."','".$now."','".$content[$ii]['kanal']."')";  
-                }
-            $ii++;    
-            }
+			// 		//insert
+            //         $dsql = $dsql.",('".$tanggal."','".$content[$ii]['no_rek']."','".$content[$ii]['kode']."',".$content[$ii]['jml_pener'].",'".$content[$ii]['kd_uptbyr']."','".$skpd_samsat."','".$now."','".$content[$ii]['kanal']."')";  
+            //     }
+            // $ii++;    
+            // }
             
             
-			$insert_ =  $this->mapi->save_tgl('tsamsat',$dsql,$tanggal);
+			// $insert_ =  $this->mapi->save_tgl('tsamsat',$dsql,$tanggal);
 
-			if($insert_){
-				$insert_ = $this->db->query("insert into tr_tetap select * from tr_tetap_api where no_tetap+kanal not in (select no_tetap+kanal from tr_tetap where tgl_tetap='$tanggal') and tgl_tetap='$tanggal'");
-            	$insert_ = $this->db->query("insert into tr_terima select * from tr_terima_api where no_terima+kanal not in (select no_terima+kanal from tr_terima where kunci=1 and tgl_terima='$tanggal') and tgl_terima='$tanggal'");
+			// if($insert_){
+			// 	$insert_ = $this->db->query("insert into tr_tetap select * from tr_tetap_api where no_tetap+kanal not in (select no_tetap+kanal from tr_tetap where tgl_tetap='$tanggal') and tgl_tetap='$tanggal'");
+            // 	$insert_ = $this->db->query("insert into tr_terima select * from tr_terima_api where no_terima+kanal not in (select no_terima+kanal from tr_terima where kunci=1 and tgl_terima='$tanggal') and tgl_terima='$tanggal'");
 
-            	if ($insert_) {
-					$this->response(array('status' => 'berhasil', 200));
-				} else {
-					$this->response(array('status' => 'gagal', 502));
-				}
+            // 	if ($insert_) {
+			// 		$this->response(array('status' => 'berhasil', 200));
+			// 	} else {
+			// 		$this->response(array('status' => 'gagal', 502));
+			// 	}
 
-			}else{
-				$this->response(array('status' => 'gagal', 502));
-			} 
+			// }else{
+			// 	$this->response(array('status' => 'gagal', 502));
+			// } 
 
 
-            
-			
             
 			
+            
+			
 
-			}					
+		}else{
+            $this->response(array(
+				'status' => false,
+				'message' => 'Data tidak ada',
+				'data' => '',
+				), 404); 
+        }					
 						
 		
     }
@@ -275,6 +282,12 @@ class Bos extends REST_Controller
 	{
 		$this->response($this->builtInMethods, 200); // 200 being the HTTP response code
 	}
+
+
+    function test_get(){
+        $query          = $this->bosModel->test_query();
+        $this->response($query, 200); 
+    }
 
     function apbdBos_get(){
 		ini_set('max_execution_time', -1); 
