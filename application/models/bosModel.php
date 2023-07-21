@@ -25,6 +25,7 @@ Class BosModel extends CI_Model
 			$this->db->select("
 				'001/SP2B/1.01.2.22.0.00.01.0000/I/2023' as no_sp2b,
 				'2023-01-31' as tgl_sp2b,
+				1 as bulan,
 				'3001' as no_bukti,
 				'2023-01-02' as tgl_bukti,
 				'1.01.2.22.0.00.01.0000' as kd_skpd,

@@ -66,99 +66,76 @@ class Bos extends REST_Controller
 		
 		$tanggal =  $tg3.'-'.$tg2.'-'.$tg1;
 		
-		$url = "localhost:8080/api_samsat/index.php/bos/test/format/json/";
+		$url = "https://simakda.kalbarprov.go.id/simakdaservice_2023/index.php/bos/test/format/json";
+
+        $ch = curl_init();
+        curl_setopt_array($ch, [
+            CURLOPT_URL => $url,
+            CURLOPT_SSL_VERIFYHOST => false,
+            CURLOPT_SSL_VERIFYPEER => false,
+            CURLOPT_RETURNTRANSFER => true
+        ]);
+        $response = curl_exec($ch);
+        $content = json_decode($response);
+        curl_close($ch);
 		
-		$data = file_get_contents($url);
+		// $data = file_get_contents($url);
 
 		// print_r($data);
 		// return;
-		
-		$content = json_decode($data, TRUE);
-       
-	    return $content;
-		
+	
 		$row_num = count($content);
         $dsql='';
         $ii = 0;
 
         if($row_num>0){
-            // foreach($content as $resulte){
+            foreach($content as $resulte){
 
-            // 	$cek_upt = $content[$ii]['kd_upt'];
-		    //     $skpdsamsat=$this->db->query("SELECT isnull(kd_skpd,0) kd_skpd from map_samsat where kd_samsat='$cek_upt'")->row();
-        	// 	$skpd_samsat=$skpdsamsat->kd_skpd;
-        		
-
-            // 	if($resulte['no_rek']==4110601){
-            //        $content[$ii]['no_rek']=4110201;
-            //     } else if ($resulte['no_rek']==4110602){
-            //        $content[$ii]['no_rek']=4110202;
-            //     } else if ($resulte['no_rek']==4110603){
-            //        $content[$ii]['no_rek']=4110203;
-            //     } else if ($resulte['no_rek']==4110604){
-            //        $content[$ii]['no_rek']=4110204;
-            //     } else if ($resulte['no_rek']==4110605){
-            //        $content[$ii]['no_rek']=4110205;
-            //     } else if ($resulte['no_rek']==4110606){
-            //        $content[$ii]['no_rek']=4110206;
-            //     } else if ($resulte['no_rek']==4110607){
-            //        $content[$ii]['no_rek']=4110207;
-            //     } else if ($resulte['no_rek']==4110608){
-            //        $content[$ii]['no_rek']=4110208;
-            //     } else if ($resulte['no_rek']==4110609){
-            //        $content[$ii]['no_rek']=4110209;
-            //     } else if ($resulte['no_rek']==4110610){
-            //        $content[$ii]['no_rek']=4110210;
-            //     } else if ($resulte['no_rek']==4110611){
-            //        $content[$ii]['no_rek']=4110211;
-            //     } else if ($resulte['no_rek']==4110612){
-            //        $content[$ii]['no_rek']=4110212;
-            //     } else if ($resulte['no_rek']==4110613){
-            //        $content[$ii]['no_rek']=4110213;
-            //     } else {
-            //        $resulte['no_rek'];
-            //     } 
-
-            //     //cek
-			// 		if($content[$ii]['kd_dati2']==''){
-			// 			$this->response(array('status' => 'kd_dati2 ada yang kosong', 502));
-			// 		}
-					
-			// 		if($content[$ii]['no_rek']==''){
-			// 			$this->response(array('status' => 'no_rek ada yang kosong', 502));
-			// 		}
-					
-			// 		if($content[$ii]['kode']==''){
-			// 			$this->response(array('status' => 'kode ada yang kosong', 502));
-			// 		}
-					
-			// 		if($content[$ii]['jml_pener']==''){
-			// 			$this->response(array('status' => 'jml_pener ada yang kosong', 502));
-			// 		}
-					
-			// 		if($content[$ii]['kd_upt']==''){
-			// 			$this->response(array('status' => 'kd_upt ada yang kosong', 502));
-			// 		}
-					
-			// 		if($content[$ii]['kd_uptbyr']==''){
-			// 			$this->response(array('status' => 'kd_uptbyr ada yang kosong', 502));
-			// 		}
-					
-			// 		if($content[$ii]['kd_lokasi']==''){
-			// 			$this->response(array('status' => 'kd_lokasi ada yang kosong', 502));
-			// 		}
-
-			// 	if($ii==0){
-					
-			// 		//insert
-            //         $dsql = $dsql."('".$tanggal."','".$content[$ii]['no_rek']."','".$content[$ii]['kode']."',".$content[$ii]['jml_pener'].",'".$content[$ii]['kd_uptbyr']."','".$skpd_samsat."','".$now."','".$content[$ii]['kanal']."')";    
-            //     }else{
-					
-			// 		//insert
-            //         $dsql = $dsql.",('".$tanggal."','".$content[$ii]['no_rek']."','".$content[$ii]['kode']."',".$content[$ii]['jml_pener'].",'".$content[$ii]['kd_uptbyr']."','".$skpd_samsat."','".$now."','".$content[$ii]['kanal']."')";  
-            //     }
-            // $ii++;    
-            // }
+                $no_sp2b             = $resulte->no_sp2b;
+                $tgl_sp2b            = $resulte->tgl_sp2b;
+                $bulan              = $resulte->bulan;
+                $no_bukti            = $resulte->no_bukti;
+                $tgl_bukti           = $resulte->tgl_bukti;
+                $kd_skpd             = $resulte->kd_skpd;
+                $nm_skpd             = $resulte->nm_skpd;
+                $kd_sub_kegiatan     = $resulte->kd_sub_kegiatan;
+                $nm_sub_kegiatan     = $resulte->nm_sub_kegiatan;
+                $kd_rek6             = $resulte->kd_rek6;
+                $nm_rek6             = $resulte->nm_rek6;
+                $kd_satdik           = $resulte->kd_satdik;
+                $nm_satdik           = $resulte->nm_satdik;
+                $keterangan          = $resulte->keterangan;
+                $tgl_awal            = $resulte->tgl_awal;
+                $tgl_akhir           = $resulte->tgl_akhir;
+                $tahap               = $resulte->tahap;
+                $jenis_bos           = $resulte->jenis_bos;
+                $nilai               = $resulte->nilai;
+                
+                
+                $insertdata         =  $this->db->query("INSERT INTO trdtransout_blud_test 
+                                        (no_bukti,
+                                        no_sp2d,
+                                        kd_sub_kegiatan,
+                                        nm_sub_kegiatan,
+                                        kd_rek6,
+                                        nm_rek6,
+                                        nilai,
+                                        kd_skpd,
+                                        sumber,
+                                        bulan,
+                                        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",array(
+                                            $no_bukti,
+                                            $no_sp2b,
+                                            $kd_sub_kegiatan,
+                                            $nm_sub_kegiatan,
+                                            $kd_rek6,
+                                            $nm_rek6,
+                                            $nilai,
+                                            $kd_skpd,
+                                            'BOS',
+                                            $bulan
+                                        ));
+            }
             
             
 			// $insert_ =  $this->mapi->save_tgl('tsamsat',$dsql,$tanggal);
@@ -167,11 +144,11 @@ class Bos extends REST_Controller
 			// 	$insert_ = $this->db->query("insert into tr_tetap select * from tr_tetap_api where no_tetap+kanal not in (select no_tetap+kanal from tr_tetap where tgl_tetap='$tanggal') and tgl_tetap='$tanggal'");
             // 	$insert_ = $this->db->query("insert into tr_terima select * from tr_terima_api where no_terima+kanal not in (select no_terima+kanal from tr_terima where kunci=1 and tgl_terima='$tanggal') and tgl_terima='$tanggal'");
 
-            // 	if ($insert_) {
-			// 		$this->response(array('status' => 'berhasil', 200));
-			// 	} else {
-			// 		$this->response(array('status' => 'gagal', 502));
-			// 	}
+            	if ($insertdata) {
+					$this->response(array('status' => 'berhasil', 200));
+				} else {
+					$this->response(array('status' => 'gagal', 502));
+				}
 
 			// }else{
 			// 	$this->response(array('status' => 'gagal', 502));
