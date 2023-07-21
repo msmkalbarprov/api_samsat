@@ -122,7 +122,7 @@ class Bos extends REST_Controller
                                         nilai,
                                         kd_skpd,
                                         sumber,
-                                        bulan,
+                                        bulan
                                         ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",array(
                                             $no_bukti,
                                             $no_sp2b,
