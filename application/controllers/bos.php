@@ -26,7 +26,7 @@ class Bos extends REST_Controller
 		parent::__construct();
 		$this->__getMyMethods();
 		$this->load->model('bosModel');
-        $this->load->helper();
+        $this->load->helper('form');
 	}
     
     function view_get(){
