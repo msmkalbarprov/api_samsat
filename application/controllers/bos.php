@@ -281,9 +281,6 @@ class Bos extends REST_Controller
 		ini_set('memory_limit',-1);
 		$headers 	        = getallheaders();
 
-        var_dump($headers);
-        return;
-
         if (isset($headers['Authorization']) && $headers['Authorization'] == 'Bearer $2y$10$bruKwHKOLivtKlagG6h0Hu3SogLzDF8bGKlbO/xZsX22mv5xZntS@m1n') {
 			$query          = $this->bosModel->getBosApbd();
 			if($query) {
@@ -304,7 +301,7 @@ class Bos extends REST_Controller
 			$this->response(array(
 				'status' => false,
 				'message' => 'Unauthorized access token',
-				'data' => ''.$headers,
+				'data' => '',
 				), 404);  
 		}
 	}
