@@ -63,17 +63,23 @@ class Bos extends REST_Controller
 		$tg1 = substr($tgl1,0,2);
 		$tg2 = substr($tgl1,2,2);
 		$tg3 = substr($tgl1,4,8);
+		// $token = "$2y$10$TXXhdbabGjVUEZQWo6btiOWCe1uQ4BAxNFVAwivdrPze.P3Q0r21e";
 		
 		$tanggal =  $tg3.'-'.$tg2.'-'.$tg1;
-		
-		$url = "https://simakda.kalbarprov.go.id/simakdaservice_2023/index.php/bos/test/format/json";
+		$headers = array(
+			'Authorization: Bearer $2y$10$TXXhdbabGjVUEZQWo6btiOWCe1uQ4BAxNFVAwivdrPze.P3Q0r21e',
+			"Content-Type: application/json"
+		);
+			
+		$url =  "https://sipkas.id/api/send-data/bos-reguler/pengeluaran/06/2023";
 
         $ch = curl_init();
         curl_setopt_array($ch, array(
             CURLOPT_URL => $url,
             CURLOPT_SSL_VERIFYHOST => false,
             CURLOPT_SSL_VERIFYPEER => false,
-            CURLOPT_RETURNTRANSFER => true
+            CURLOPT_RETURNTRANSFER => true,
+			CURLOPT_HTTPHEADER => $headers,
         ));
         $response = curl_exec($ch);
         $content = json_decode($response);
@@ -81,9 +87,9 @@ class Bos extends REST_Controller
 		
 		// $data = file_get_contents($url);
 
-		// print_r($data);
+		// print_r($url);
 		// return;
-	
+		// echo $content;
 		$row_num = count($content);
         $dsql='';
         $ii = 0;
@@ -165,7 +171,9 @@ class Bos extends REST_Controller
 				'status' => false,
 				'message' => 'Data tidak ada',
 				'data' => '',
+				'content' => $response
 				), 404); 
+				
         }					
 						
 		
