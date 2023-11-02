@@ -878,6 +878,57 @@ order by a.kd_skpd,a.tgl_kas,a.no_kas
 		
 	}
 
+	function SpmList_get(){
+		ini_set('max_execution_time', -1); 
+		ini_set('memory_limit',-1);
+			$kueri 			= $this->get('search');
+			$jenis 			= $this->get('jenis');
+			$query          = $this->sp2dModel->getspmQuery($kueri,$jenis);
+			if($query) {
+				$this->response(array(
+					'status' => true,
+					'message' => 'SUKSES',
+					'data' => $query,
+					), 200);                
+			} else {
+				
+				$this->response(array(
+					'status' => false,
+					'message' => 'Data tidak ditemukan',
+					'data' => '',
+                    "recordsTotal" => 0,
+				    "recordsFiltered" => 0,
+					), 404);  
+			}
+		
+	}
+
+	function SpmDetail_get(){
+		ini_set('max_execution_time', -1); 
+		ini_set('memory_limit',-1);
+			$kueri 			= $this->get('search');
+			$query          = $this->sp2dModel->getspmDetailQuery($kueri);
+			$rekanan        = $this->sp2dModel->getspmRekananQuery($kueri);
+			if($query) {
+				$this->response(array(
+					'status' 	=> true,
+					'message' 	=> 'SUKSES',
+					'data' 		=> $query,
+					'rekanan' 	=> $rekanan,
+					), 200);                
+			} else {
+				
+				$this->response(array(
+					'status' => false,
+					'message' => 'Data tidak ditemukan',
+					'data' => '',
+                    "recordsTotal" => 0,
+				    "recordsFiltered" => 0,
+					), 404);  
+			}
+		
+	}
+
 	
     
 }
