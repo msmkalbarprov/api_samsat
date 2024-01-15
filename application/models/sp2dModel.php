@@ -64,7 +64,7 @@ Class Sp2dModel extends CI_Model
 			
 			if (isset($kueri)) {
 				if($jenis=='SPM'){
-					$where = "where no_spm = '$kueri'";
+					$where = "where no_spm like '%$kueri%'";
 				}else if($jenis=='NPWP'){
 					$where = "where npwp = '$kueri'";
 				}else if($jenis=='Rekanan'){
