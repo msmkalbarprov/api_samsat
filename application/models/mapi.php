@@ -39,7 +39,7 @@ Class Mapi extends CI_Model
 			INSERT into $tabel_tetap_api
 			select 
 			isnull(no_tetap,'') no_tetap,
-			tgl_samsat,kd_skpd,ISNULL(no_rek,no_rek2) [no_rek],kd_sub_kegiatan,isnull(kd_rek_lo,'') kd_rek_lo,sum(nilai) [nilai],isnull(keterangan,'') keterangan,'samsat' user_name,isnull(kanal,'')as kanal from(
+			tgl_samsat,kd_skpd,ISNULL(no_rek,no_rek2) [no_rek],kd_sub_kegiatan,isnull(kd_rek_lo,'') kd_rek_lo,sum(nilai) [nilai],isnull(keterangan,'') keterangan,'samsat' user_name,isnull(kanal,'')as kanal, 'BANK' as jns_pembayaran from(
 				select 
 				replace(tgl_samsat,'-','')+'/'+b.kd_rek6+'/'+kd_uptbyr+'/'+a.kd_upt+'/tetap'+kode+'/samsat'+'/'+isnull(kanal,'') [no_tetap],
 				replace(tgl_samsat,'-','')+'/'+b.kd_rek6+'/'+kd_uptbyr+'/'+a.kd_upt+'/terima'+kode+'/samsat'+'/'+isnull(kanal,'') [no_terima],
@@ -63,7 +63,7 @@ Class Mapi extends CI_Model
 			select 
 			isnull(no_terima,'') no_terima,tgl_samsat,isnull(no_tetap,'') no_tetap,tgl_samsat,'1' sts_tetap,
 			kd_skpd,kd_sub_kegiatan,ISNULL(no_rek,no_rek2) [no_rek],isnull(kd_rek_lo,'') kd_rek_lo,sum(nilai) [nilai],
-			isnull(keterangan,'') keterangan,'1' jenis,'samsat' user_name,kd_uptbyr as sumber,'0' kunci ,isnull(kanal,'')as kanal
+			isnull(keterangan,'') keterangan,'1' jenis,'samsat' user_name,kd_uptbyr as sumber,'0' kunci ,isnull(kanal,'')as kanal, 'BANK' as jns_pembayaran
 			from(
 				select 
 				replace(tgl_samsat,'-','')+'/'+b.kd_rek6+'/'+kd_uptbyr+'/'+a.kd_upt+'/tetap'+kode+'/samsat'+'/'+isnull(kanal,'') [no_tetap],
