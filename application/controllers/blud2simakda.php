@@ -132,61 +132,61 @@ class blud2simakda extends CI_Controller {
 
 				
 
-		$this->db->query("INSERT into
-		 tr_terima_blud (no_terima,tgl_terima,no_tetap,tgl_tetap,sts_tetap,kd_skpd,kd_kegiatan,kd_rek5,kd_rek_blud,nilai,keterangan,jenis,kd_rek7)
+			$this->db->query("INSERT into
+		 		tr_terima_blud (no_terima,tgl_terima,no_tetap,tgl_tetap,sts_tetap,kd_skpd,kd_kegiatan,kd_rek5,kd_rek_blud,nilai,keterangan,jenis,kd_rek7)
 				values ('$no_terima','$tgl_terima','$no_tetap','$tgl_tetap','$sts_tetap','$kd_skpd','$kd_kegiatan','$kd_rek5',
 				'$kd_rek_blud','$nilai','$keterangan','$jenis','$kd_rek7')");
-	}
+		}
 
-	foreach($result4 as $value4){
+		foreach($result4 as $value4){
 
-		$no_sts 			= $value4->no_sts;
-		$kd_skpd 			= $value4->kd_skpd;
-		$tgl_sts 			= $value4->tgl_sts;
-		$keterangan 		= $value4->keterangan;
-		$total 				= $value4->total;
-		$jns_spp 			= $value4->jns_spp;
-		$pay 				= $value4->pay;
-		$username 			= $value4->username;
-		$tgl_update 		= $value4->tgl_update;
-		$jns_trans 			= $value4->jns_trans;
+			$no_sts 			= $value4->no_sts;
+			$kd_skpd 			= $value4->kd_skpd;
+			$tgl_sts 			= $value4->tgl_sts;
+			$keterangan 		= $value4->keterangan;
+			$total 				= $value4->total;
+			$jns_spp 			= $value4->jns_spp;
+			$pay 				= $value4->pay;
+			$username 			= $value4->username;
+			$tgl_update 		= $value4->tgl_update;
+			$jns_trans 			= $value4->jns_trans;
 
-		// 'no_sts' => $a['no_sts'],
-	    //                     'kd_skpd' => $a['kd_skpd'],
-	    //                     'tgl_sts' => $a['tgl_sts'],
-	    //                     'keterangan'=> $a['keterangan'],
-	    //                     'total'  => $a['total'],
-	    //                     'jns_spp'=> $a['jns_spp'],
-	    //                     'pay' => $a['pay'],
-	    //                     'username'  => $a['username'],
-	    //                     'tgl_update'   => $a['tgl_update'],
-	    //                     'jns_trans'    => $a['jns_trans']
-
-
-
-$this->db->query("INSERT into trhkasin_blud (no_sts,kd_skpd,tgl_sts,keterangan,total,jns_spp,pay,username,tgl_update,jns_trans)
-		values ('$no_sts','$kd_skpd','$tgl_sts','$keterangan','$total','$jns_spp','$pay','$username',
-		'$tgl_update','$jns_trans')");
-}
-
-foreach($result5 as $value){
-
-	$kd_skpd 			= $value->kd_skpd;
-	$no_sts 			= $value->no_sts;
-	$kd_rek5 			= $value->kd_rek5;
-	$rupiah 			= $value->rupiah;
-	$kd_kegiatan 		= $value->kd_kegiatan;
-	$no_sp2d 			= $value->no_sp2d;
-	$kd_rek_blud 		= $value->kd_rek_blud;
-	$nm_rek_blud 		= $value->nm_rek_blud;
-	$no_terima 			= $value->no_terima;
-	$kd_rek7 			= $value->kd_rek7;
+			// 'no_sts' => $a['no_sts'],
+		    //                     'kd_skpd' => $a['kd_skpd'],
+		    //                     'tgl_sts' => $a['tgl_sts'],
+		    //                     'keterangan'=> $a['keterangan'],
+		    //                     'total'  => $a['total'],
+		    //                     'jns_spp'=> $a['jns_spp'],
+		    //                     'pay' => $a['pay'],
+		    //                     'username'  => $a['username'],
+		    //                     'tgl_update'   => $a['tgl_update'],
+		    //                     'jns_trans'    => $a['jns_trans']
 
 
-$this->db->query("INSERT into trdkasin_blud (kd_skpd,no_sts,kd_rek5,rupiah,kd_kegiatan,no_sp2d,kd_rek_blud,nm_rek_blud,no_terima,kd_rek7)
-	values ('$kd_skpd','$no_sts','$kd_rek5','$rupiah','$kd_kegiatan','$no_sp2d','$kd_rek_blud','$nm_rek_blud',
-	'$no_terima','$kd_rek7')");
-}
+
+			$this->db->query("INSERT into trhkasin_blud (no_sts,kd_skpd,tgl_sts,keterangan,total,jns_spp,pay,username,tgl_update,jns_trans)
+					values ('$no_sts','$kd_skpd','$tgl_sts','$keterangan','$total','$jns_spp','$pay','$username',
+					'$tgl_update','$jns_trans')");
+		}
+
+		foreach($result5 as $value){
+
+			$kd_skpd 			= $value->kd_skpd;
+			$no_sts 			= $value->no_sts;
+			$kd_rek5 			= $value->kd_rek5;
+			$rupiah 			= $value->rupiah;
+			$kd_kegiatan 		= $value->kd_kegiatan;
+			$no_sp2d 			= $value->no_sp2d;
+			$kd_rek_blud 		= $value->kd_rek_blud;
+			$nm_rek_blud 		= $value->nm_rek_blud;
+			$no_terima 			= $value->no_terima;
+			$kd_rek7 			= $value->kd_rek7;
+
+
+			$this->db->query("INSERT into trdkasin_blud (kd_skpd,no_sts,kd_rek5,rupiah,kd_kegiatan,no_sp2d,kd_rek_blud,nm_rek_blud,no_terima,kd_rek7)
+				values ('$kd_skpd','$no_sts','$kd_rek5','$rupiah','$kd_kegiatan','$no_sp2d','$kd_rek_blud','$nm_rek_blud',
+				'$no_terima','$kd_rek7')");
+		}
 		
 		/*INSERT TRHSP3B ================================*/
 
@@ -273,11 +273,11 @@ $this->db->query("INSERT into trdkasin_blud (kd_skpd,no_sts,kd_rek5,rupiah,kd_ke
 
 				values ('$no_sp3b','$kd_kegiatan','$kd_rek5','$nm_rek5','$nilai','$kd_skpd',month('$tgl_sp3b'),'BLUD')");
 
-$this->db->query("INSERT into
-trdtransout_blud_penerimaan (no_sp2d, kd_sub_kegiatan, kd_rek6, nm_rek6,nilai,
-			   kd_skpd,bulan,sumber)
+			$this->db->query("INSERT into
+			trdtransout_blud_penerimaan (no_sp2d, kd_sub_kegiatan, kd_rek6, nm_rek6,nilai,
+						   kd_skpd,bulan,sumber)
 
-   values ('$no_sp3b','$kd_kegiatan','$kd_rek5','$nm_rek5','$nilai','$kd_skpd',month('$tgl_sp3b'),'BLUD')");
+			   values ('$no_sp3b','$kd_kegiatan','$kd_rek5','$nm_rek5','$nilai','$kd_skpd',month('$tgl_sp3b'),'BLUD')");
 
 		}
 
@@ -289,42 +289,44 @@ trdtransout_blud_penerimaan (no_sp2d, kd_sub_kegiatan, kd_rek6, nm_rek6,nilai,
 	} /*end function*/
 
 
-function data_anggaran_pukesmas($kd_skpd=''){
+	function data_anggaran_pukesmas($kd_skpd=''){
 		if($kd_skpd==''){
 			$filter="";
 		}else{
 			$filter="and kd_skpd='$kd_skpd'";
 		}
 
-			$sql="SELECT left(no_trdrka,22) kd_skpd, kd_sub_kegiatan, kd_rek6, nm_rek6,
-sum(nilai) nilai, sum(nilai_sempurna) geser, sum(nilai_ubah) ubah from trdrka WHERE left(kd_skpd,4)='1.02' and right(kd_rek6,4)='9999'
-$filter
-GROUP BY kd_sub_kegiatan, kd_rek6,left(no_trdrka,22),nm_rek6
-ORDER BY kd_skpd";
-			$exe=$this->db->query($sql);
+		$sql="SELECT left(no_trdrka,22) kd_skpd, kd_sub_kegiatan, kd_rek6, nm_rek6,
+			sum(nilai) nilai, sum(nilai_sempurna) geser, sum(nilai_ubah) ubah from trdrka WHERE left(kd_skpd,4)='1.02' and right(kd_rek6,4)='9999'
+			$filter
+			GROUP BY kd_sub_kegiatan, kd_rek6,left(no_trdrka,22),nm_rek6
+			ORDER BY kd_skpd";
+		$exe=$this->db->query($sql);
 
-	        $data1 = array();
-	        $ii = 0;
-	        foreach($exe->result_array() as $a)
-	        { 	           
-	            $data1[] = array(
-	                        'id' => $ii, 
-	                        'kd_skpd' => $a['kd_skpd'],
-	                        'kegiatan' => $a['kd_sub_kegiatan'],
-	                        'kd_rek5'=> $a['kd_rek6'],
-	                        'nm_rek5'=> $a['nm_rek6'],
-	                        'nilai'  => $a['nilai'],
-	                        'nilai_sempurna'=> $a['geser'],
-	                        'nilai_ubah' => $a['ubah']
-	                        );
-	                        $ii++;
-	        }
+        $data1 = array();
+        $ii = 0;
+        foreach($exe->result_array() as $a)
+        { 	           
+            $data1[] = array(
+                        'id' => $ii, 
+                        'kd_skpd' => $a['kd_skpd'],
+                        'kegiatan' => $a['kd_sub_kegiatan'],
+                        'kd_rek5'=> $a['kd_rek6'],
+                        'nm_rek5'=> $a['nm_rek6'],
+                        'nilai'  => $a['nilai'],
+                        'nilai_sempurna'=> $a['geser'],
+                        'nilai_ubah' => $a['ubah']
+                        );
+                        $ii++;
+        }
 
 
 	    echo json_encode($data1);
 	
 
 	}
+
+
 
 	function jurnal_blud(){
  		$result=json_decode($_POST['data_header'],true);
@@ -399,6 +401,74 @@ ORDER BY kd_skpd";
 
 	} /*end function*/
 
+	function data_lraapbn(){
 
+		$sql="SELECT tgl_bukti,a.kd_skpd,(select nm_skpd from ms_skpd where a.kd_skpd=kd_skpd)nm_skpd,
+			a.kd_rek6 ,(select nm_rek6 from ms_rek6 where a.kd_rek6 = kd_rek6)nm_rek6,sum(anggaran)anggaran,sum(debet)debet,sum(kredit)kredit
+			from
+			(
+				select tgl_bukti,a.kd_skpd,kd_rek6 ,sum(nilai)debet, 0 kredit
+				from trdtransout a inner join trhtransout b ON a.no_bukti = b.no_bukti AND b.kd_skpd = a.kd_skpd
+				where a.kd_skpd in ('1.02.0.00.0.00.02.0000','1.02.0.00.0.00.03.0000')  AND MONTH(b.tgl_bukti) <= 12 and year(b.tgl_bukti)=2023 and left(a.kd_rek6,1)='5' and right(kd_rek6,4)!='9999'
+				group by tgl_bukti,a.kd_skpd,kd_rek6
+				union all
+				SELECT  tgl_sts,a.kd_skpd,kd_rek6,0 debet , isnull(SUM(case when jns_trans in ('3') then b.rupiah*-1 else b.rupiah end),0) kredit
+				FROM trhkasin_pkd a INNER JOIN trdkasin_pkd b ON RTRIM(a.no_sts)=RTRIM(b.no_sts) and a.kd_skpd=b.kd_skpd
+				WHERE a.kd_skpd in ('1.02.0.00.0.00.02.0000','1.02.0.00.0.00.03.0000') and month(a.tgl_sts) <=12  and year(a.tgl_sts)=2023 AND  LEFT(b.kd_rek6, 1) = '4' and right(kd_rek6,4)!='9999'
+				group by tgl_sts,a.kd_skpd,kd_rek6,a.jns_trans
+				union all
+				select tgl_bukti,a.kd_skpd,c.map_lo kd_rek6 ,sum(nilai)debet, 0 kredit
+				from trdtransout a inner join trhtransout b ON a.no_bukti = b.no_bukti AND b.kd_skpd = a.kd_skpd inner join ms_rek6 c on a.kd_rek6=c.kd_rek6
+				where a.kd_skpd in ('1.02.0.00.0.00.02.0000','1.02.0.00.0.00.03.0000')  AND MONTH(b.tgl_bukti) <= 12 and year(b.tgl_bukti)=2023 and left(a.kd_rek6,1)='5' and right(a.kd_rek6,4)!='9999'
+				group by tgl_bukti,a.kd_skpd,c.map_lo
+				union all
+				SELECT  tgl_sts,a.kd_skpd, map_lo kd_rek6,0 debet,isnull(SUM(case when jns_trans in ('3') then b.rupiah*-1 else b.rupiah end),0) realisasi
+				FROM trhkasin_pkd a INNER JOIN trdkasin_pkd b ON RTRIM(a.no_sts)=RTRIM(b.no_sts) and a.kd_skpd=b.kd_skpd inner join ms_rek6 c on b.kd_rek6=c.kd_rek6
+				WHERE a.kd_skpd in ('1.02.0.00.0.00.02.0000','1.02.0.00.0.00.03.0000') and month(a.tgl_sts) <=12  and year(a.tgl_sts)=2023 AND  LEFT(b.kd_rek6, 1) = '4' and right(b.kd_rek6,4)!='9999'
+				group by tgl_sts,a.kd_skpd,map_lo,a.jns_trans
+			)a
+			left join 
+			(
+				select kd_skpd,kd_rek6,sum(anggaran)anggaran
+				from
+				(
+					select kd_skpd,kd_rek6,sum(nilai)anggaran
+					from trdrka
+					where kd_skpd in ('1.02.0.00.0.00.02.0000','1.02.0.00.0.00.03.0000') and jns_ang='U2' and right(kd_rek6,4)!='9999'
+					group by kd_skpd,kd_rek6
+					union all
+					select kd_skpd, map_lo kd_rek6,sum(nilai)anggaran
+					from trdrka a inner join ms_rek6 b on a.kd_rek6=b.kd_rek6
+					where kd_skpd in ('1.02.0.00.0.00.02.0000','1.02.0.00.0.00.03.0000') and jns_ang='U2' and right(a.kd_rek6,4)!='9999'
+					group by kd_skpd,map_lo
+				)a
+				group by kd_skpd,kd_rek6
+			)b on a.kd_skpd=b.kd_skpd and a.kd_rek6=b.kd_rek6
+			group by tgl_bukti,a.kd_skpd,a.kd_rek6";
+		$exe=$this->db->query($sql);
+
+        $data1 = array();
+        $ii = 0;
+        foreach($exe->result_array() as $a)
+        { 	           
+            $data1[] = array(
+                        'id' => $ii, 
+                        'tgl_bukti' => $a['tgl_bukti'],
+                        'kd_skpd' => $a['kd_skpd'],
+                        'nm_skpd' => $a['nm_skpd'],
+                        'kd_rek5'=> $a['kd_rek6'],
+                        'nm_rek5'=> $a['nm_rek6'],
+                        'anggaran'  => $a['anggaran'],
+                        'debet'=> $a['debet'],
+                        'kredit' => $a['kredit']
+                        );
+                        $ii++;
+        }
+
+
+	    echo json_encode($data1);
+	
+
+	}
 
 } /*end of end*/
